@@ -1,4 +1,5 @@
 let animals = document.querySelectorAll(".animal");
+let highest = {}
 
 let dogVotesCell = document.querySelector("#doggo-votes");
 let dogVotes = localStorage.getItem("dog-votes");
@@ -42,4 +43,24 @@ let fishVoteBtn = document.createElement("button");
         fishVotesCount = fishVotesCount + 1;
         fishVoteCell.textContent = fishVotesCount;
         localStorage.setItem("fish-votes", fishVotesCount);
-    })
+    });
+let petVotes = [
+    {name:"doggo", votes: dogVotes},
+    {name:"catto", votes: catVotes},
+    {name:"fish", votes: fishVotes}
+];
+
+highest = petVotes [0];
+let favoritePetBtn = document.createElement("button");
+    favoritePetBtn.textContent = "Click Me To See The Most Voted For Pet of ALL Time!";
+    document.body.append(favoritePetBtn);
+    favoritePetBtn.addEventListener("click", function() {
+        for(let i = 0; i < petVotes.length; i++){
+            if (petVotes[i].votes > highest.votes){
+                highest = petVotes[i]
+            }
+            
+        }
+        console.log(highest);
+        window.alert(highest);
+    });
